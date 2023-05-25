@@ -1,16 +1,12 @@
 intVal - keyHash //  хэш ключа
 idx - slotIndex // индекс слота
-node - currentNode // текущая нода
 iterNode - currentNode // текущая нода
 fondNodeAfter - fondNode // найденная нода
 code - currentChar // текущий символ
 result - stringHash // хэш строки
 mask1 - bitMask1 // 1-ая битовая маска
-mask2 - bitMask2 // 2-ая битовая маска
 pow1 - degreeValue1 //  1-ое значение степени
-pow2 - degreeValue2 //  2-ое значение степени
 res1 -  valueAfterBitmask1 // значение после побитовой операции с 1 маской
-res2 -  valueAfterBitmask2 // значение после побитовой операции с 2 маской
 result - intersectionSets // пересечение множеств
 result - unionSets // объединение множеств
 result - differenceSets // разница множеств
