@@ -1,0 +1,24 @@
+6.1.
+sumValue - amountQuarterPayment // сумма платежей за квартал
+participants - participantsById // участники с разбивкой по "айдишникам"
+data - pfrDataByYear // данные ПФР по годам
+flags - stopListFlags // "флаги" по стоп-листу
+accruals - salaryAccruals // зарплатные начисления
+
+6.2.
+ApplicationContextFactory - фабрика для создания контекста заявки
+CarBuilder - построитель для объекта Car
+ObjectDecoder - "декодеровщик" объектов
+AdditionalInformationMapper - "маппер" блока с дополнительной информацией
+
+6.3.
+public Node head // имя в контексте класса LinkedList
+int stringHash // имя в контексте метода hash(String str)
+workTelephonePrefix // имя в контексте метода обработки телефонного префикса (рабочего)
+
+6.4.
+intV1 - firstComparedInt // первое сравниваемое значение
+intV1 - firstComparedString // первое сравниваемое значение
+node - currentNode // текущая нода
+temp - tempNode // "временная" нода
+res - resultValue // "конечное" значение
