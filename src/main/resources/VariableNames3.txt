@@ -1,0 +1,35 @@
+7.1.
+errorExists - error
+isFound - found
+newParticipantFlag - isNewParticipant // новый участник
+specAppFlag - isSpecApplication // особая заявка
+systemParamExists - systemParamEnabled // системный параметр включен
+
+7.2.
+errorExists - error
+isSuccessChecking - success // в контексте метода проверки
+
+7.3.
+ for (int i = index; i <= count; i++) -  for (int indexToInsert = index; i <= count; i++)
+
+7.4.
+fromLockDate/toLockDate - lockedDate/unlockedDate
+startDate/finishDate - beginDate/endDate
+capacity/resCapacity - oldCapacity/newCapacity
+
+7.5.
+Node<T> temp = head; - Node<T> currentHeadOfList = head;
+T[] tempArray = array; - T[] currentArrayToCopy = array;
+T temp = array[i]; -  T elementToRearrange = array[i];
+
+// с использованием временной переменной
+Node<T> temp = head;
+head = insertNode;
+head.next = temp;
+temp.prev = head;
+
+// без использованием временной переменной
+insertNode.next = head;
+insertNode.next.prev = insertNode;
+head = insertNode;
+
