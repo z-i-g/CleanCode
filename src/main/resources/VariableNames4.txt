@@ -1,0 +1,12 @@
+1. bitMask1 - firstBitMask // 1-ая битовая маска в методе добавления (BloomFilter)
+2. degreeValue1 - firstDegreeValue // 1-ое значение степени в методе добавления (BloomFilter)
+3. stringHash - hashString // имя в контексте метода hash(String str)
+4. minimalRate - rateMin // минимальная ставка в методе вычисления ставки
+5. result - interestRateWithDurations // процентная ставка с учетом периодов
+6. result - interestRateWithDiscount // процентная ставка с учетом дисконта
+7. varName - name // builder поля (метод установки имени)
+8. valFromDictionary - rateFromDictionary // ставка из справочника
+9. maxAmount - amountMax // максимальная сумма кредита
+10. averageSalaryCardIncome - salaryCardIncomeAverage // средний доход по зарплатной карте
+11. averageMontPay - montPayAverage // средний ежемесячный платеж
+12. finDoc1AverageIncome - firstFinDocIncomeAverage // средний доход по первому финансовому документу
