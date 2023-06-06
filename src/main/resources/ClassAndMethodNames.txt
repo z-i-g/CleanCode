@@ -1,0 +1,16 @@
+3.1.
+ApplicationContextData - ApplicationContext // контекст хранения данных заявки
+FinDocParsingService - FinDocParser // "парсер" финансовых документов
+PhoneParsingService - PhoneParser // "парсер" телефонов
+BaseMessageRegisterProcessor - BaseMessageRegister // класс регистрации сообщений системы
+DecisionProcessingManager - DecisionProcessingService // класс обработки решения по заявке
+
+3.2.
+processing() - okrInfoResponseProcessing() // метод обработки ответа от внешней системы ОКР-ИНФО
+validate() - businessValidation() // бизнес валидация (проверка статуса заявки, последней обработанной системы)
+validate() - validateUsingJsonScheme() // валидация по json-схеме
+get() - getApplicationByAppNo() // получить заявку по номеру
+get() - getParticipantsList() // получить участников сделки (List<Participant>)
+check() - checkExistsApplication() // проверить наличие заявки
+check() - checkApplicationStatus() // проверить статус заявки
+DecisionController - DecisionService // класс определения решения(положительное/отрицательное/не принято) по заявке
