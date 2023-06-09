@@ -1,0 +1,10 @@
+3.1.
+ApplicationContext.fromAppNo(appNo) // метод фабрика создания контекста заявки по номеру
+TracingContext.fromRq(params) // метод фабрика создания контекста взаимодействия по параметрам запроса
+DecisionStatusDesc.fromEventCode(eventCode) // метод фабрика получения статусного сообщения по eventCode
+
+3.2.
+ProductReceiving // интерфейс для реализации поиска продукта (реализации - ProdCatCacheService, ProdCatProductService)
+Validator // интерфейс для реализации "поблочной" валидации запроса (реализации - AdditionalDocumentsValidator, AddressValidator, ApplicantPersonInfoValidator)
+Process // интерфейс для реализации процесса обработки заявки (реализации - ProcessNew, ProcessOld)
+TracingMessageRegister // интерфейс для реализации регистрации сообщения (реализации - RequestTracingMessageRegister, ResponseTracingMessageRegister)
