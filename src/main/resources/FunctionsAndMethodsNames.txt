@@ -1,0 +1,12 @@
+1. taskCompletedFlag(taskStatus) - isTaskCompleted(taskStatus) // предикат проверки успешности завершения задачи
+2. getFailValidationResultForRequest(request) - getFailValidationResultForRequestOrNullForRequest(request) // метод получения ошибки валидации запроса внешней системы (может вернуть null если ошибок нет)
+3. approvedSumIsCorrect(sum) - isCorrectApprovedSum(sum) // предикат проверки одобренной суммы в пределах допустимых
+4. saveIdAndSum(id, sum) - saveLimitIdAndApprovedSum(id, sum) // void метод сохранения id лимита и одобренной суммы (класс LprOperationService)
+5. createExternalSystemRqParam(context) - createAndFillExternalSystemRqParam(context) // метод создания параметров для запроса в ExternalSystem (параметры запроса представляют внутренний статический класс в классе-сервисе интеграции с внешними системами)
+6. createExternalSystemRequest(externalSystemRqParams) - createExternalSystemRequestWithRecoveryOperation(externalSystemRqParams) // метод создания запроса с операцией восстановления лимита во внешнею систему на основе параметров запроса
+7. sendExternalSystemRequest(request) - sendRequest(request) // void метод отправки запроса во внешнею систему (название класса содержит имя внешней системы - ExternalSystemInteractionService)
+8. createContext(params) - createAndFillContext(params) // метод создания и заполнения контекста взаимодействия
+9. getStatusBlock(context) - getAndFillBlock(context) // метод создания блок Status в классе StatusBlockService (имя класса уже является информативным)
+10. calculateInterestWithDiscountRate(context) - calculateAndSetInterestWithDiscountRate // void метод расчета и установки в context процентной ставки с учетом дисконта
+11. getParticipantsDecisions(context) - getDecisions(context) // метод получения решения по участникам сделки в классе ParticipantsDecisionService (имя класса уже является информативным)
+12. checkIsNeedPrepareData(context) - isNeedPrepareData(context) // метод проверки необходимости предварительной подготовки данных
