@@ -1,0 +1,12 @@
+1. withoutSystemParameterEnabled // параметр обхода вызова System (было paramEnabled)
+2. isSpecialApplication || isIskApplication // особая заявка или заявка с индивидуальной схемой (было сравнение через ""Y".equals())
+3. static final String DEFAULT_DATE_VALUE // дата "заглушка" если поле пустое при передаче во внешнюю систему (использовалось в нескольких местах в виде литерала "01013900")
+4. static final String SYSTEM_BUSINESS_CODE // бизнес-код системы для идентификации в сервисе логирования (использовалось как литерал "")
+5. bankCodeExists && isNewProcess // код банка существует и новый процесс (было сравнение через ""Y".equals() и Integer.valueOf(1).equals())
+6. isDeclineDecisionOnMainApplicant || isDeclineDecisionOnParticipant // отрицательное решение по основному заемщику или участникам (было сравнение через ""Y".equals() и Integer.valueOf(1).equals() и через Stream().anyMatch среди участников)
+7. isMortgageTrigger // переменная для определения, что пришедшее сообщение с "триггером" для ипотечного продукта (было сравнение Integer.valueOf(2).equals(triggerCode))
+8. new BigInteger(stringValue) // было BigInteger.valueOf(Long.parseLong(stringValue)) (при значении stringValue больше long была ошибка). stringValue - номер заявки
+9. static final String SOLVED_FRAUD_DECISION = "Solved" // принятое решение аналитика (использовалось в нескольких местах в виде литерала "Solved")
+10. rate.divide(minRate) throws ArithmeticException // в методе вычисления процентной ставки есть операция деления на поле из входящего json, может быть 0
+11. isNeedSendDecision // переменная о необходимости отправки решения (было несколько сравнений newProcessSign != null && newProcessSign == 1 || Arrays.asList(45, 55).contains(currentAppStatus))
+12. private static String ERROR_MESSAGE = "Присланный id не найден" // переменная хранит сообщение об ошибке в классе исключения (раньше передавался в виде литерала при выбросе исключения, исключение конкретного вида, соответствует сообщению об ошибке)
