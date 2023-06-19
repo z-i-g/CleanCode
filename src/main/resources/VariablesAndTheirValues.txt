@@ -1,0 +1,25 @@
+1. DatatypeFactory.newInstance().newXMLGregorianCalendar(appStartDate.toString()); // конвертация дат, добавил Assert.NotNull(appStartDate)
+2. Assert.notNull(appNo, "В сообщении отсутствует номер заявки"); // метод создания контекста взаимодействия, перед ApplicationContext.fromAppNo(new BigInteger(appNo)) входящего xml
+3. Assert.notNull(decisionCode); // decisionCode типа Integer, берется из входящего запроса
+4. DecisionContext.fromRequestParams(Map(String, Object) requestParams); // инициализация всех полей DecisionContext перенес в статический метод фабрику (раньше каждон поле "сетилось" после создания new DecisionContext())
+5. new InformationContext(String uuid, String objectId); // было new InformationContext() и далее сеттеры
+6. List<MplApplication> mplApplicationList = context.getMplApplications(); // перенес объявление и инициализацию непосредственно перед местом использования
+7. TracingRegisterContext tracingRegisterContext = null;
+   много кода...
+   if(isTracingEnabled) {tracingRegisterContext = buildTracingContext();} // перенес объявление и инициализацию непосредственно перед местом использования
+8. FraudDecisionResponse fraudResponse;
+   много кода...
+   fraudResponse = buildResponse();// перенес объявление и инициализацию непосредственно перед местом использования
+9. boolean isReserveLimit = "Y".equals(context.getIskReserveSign());
+   много кода...
+   if(isReserveLimit) {...} // перенес объявление и инициализацию непосредственно перед местом использования
+10. String decisionDate = (String) request.get("decisionDate");
+    много кода...
+    DecisionContext(decisionDate); // перенес объявление и инициализацию непосредственно перед местом использования
+11. Assert.notNull(decisionDate, "В сообщении отсутствует дата решения"); // перед вызовом LocalDate.parse(decisionDate);
+12. boolean isSpecApp = "Y".equals(context.getSpecAppSign());
+    много кода...
+    if(isSpecApp) {...} // перенес объявление и инициализацию непосредственно перед местом использования
+13. Assert.notNull(appNo, "appNo не может быть null"); // метод создания контекста взаимодействия, перед RorInfoContext.fromAppNo(appNo)
+14. Assert.notNull(rqUuid, "В сообщении отсутствует rqUuid"); // метод сохранения rqUuid,  rqUuid берется из входящего запроса
+15. BigDecimal minimalRate = context.getMinimalRate(); // перенес объявление и инициализацию непосредственно перед местом использования
