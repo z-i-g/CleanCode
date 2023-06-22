@@ -1,0 +1,64 @@
+1. setAccountsForMainApplicantAndParticipants() -> // разделил метод установки счетов основного заемщика и других участников сделки
+   - setAccountsForMainApplicant()
+   - setAccountsForParticipants()
+2. ProductCatalogue prodCat = application.getProductCatalogue();
+   много кода...
+   mapAndBuildSpecialParametersBlock(prodCat); ->
+
+   mapAndBuildSpecialParametersBlock(application.getProductCatalogue()); // убрал объявление переменной, передаю сразу в целевой метод
+3. MortgProdcat mortgProdCat = application.getMortgProdcat();
+   много кода...
+   mapAndBuildAdditionalInfoBlock(mortgProdCat); ->
+
+   mapAndBuildAdditionalInfoBlock(application.getMortgProdcat());  // убрал объявление переменной, передаю сразу в целевой метод
+4. BigDecimal minRateFromDictionary = newBigDecimal(getMinRateFromDictionary());
+   context.setMinRateFromDictionary(minRateFromDictionary); ->
+
+   setMinRateFromDictionary(context); // вынес в отдельный метод установку минимальной ставки из справочника (было частью большого метода)
+5. AppAddInfo appAddInfo = context.getAppAddInfo();
+   DecisionInfo decisionInfo = context.getDecisionInfo();
+   decisionAddInfoMapper.map(appAddInfo, decisionInfo); ->
+
+   decisionAddInfoMapper.map(context.getAppAddInfo(), context.getDecisionInfo()); // убрал объявление переменных, передаю сразу в целевой метод
+6. BigDecimal mortgRateForAfterReg = context.getApplication().getMortgRateForAfterReg();
+   много кода...
+   calculateInterestRateWithDiscounts(var1, mortgRateForAfterReg);
+
+   calculateInterestRateWithDiscounts(var1, context.getApplication().getMortgRateForAfterReg());  // убрал объявление переменной, передаю сразу в целевой метод
+7. SbSystem sbSystem = application.getSbSystem();
+   incomeInfoMapper.map(sbSystem); // перенес переменную в место, непосредственно перед использованием
+8. String declineReasonCodes = StringUtils.defaultString(var1, var2, var3...);
+   преоброзование declineReasonCodes // перенес в отдельный метод processAndCombineDeclineCodes(context);
+9. String errorMessage = context.getErrorMessage();
+   Status.builder().withErrorMessage(errorMessage != null ? errorMessage.replace("\n", "; ") : null); ->
+
+   Status.builder().withErrorMessage(getErrorMessage(context)); // перенес формирование errorMessage в отдельный метод getErrorMessage(context);
+10. Date appUpdateDate = context.getApplication() != null && context.getApplication().getApplicationUpdateDate != null ? Date.from(context.getApplication().getApplicationUpdateDate()).toInstant(ZoneOffset.UTC) : null;
+    Status.builder().withApplicationUpdateDate(appUpdateDate); ->
+
+    Status.builder().withApplicationUpdateDate(getApplicationUpdateDate(context)); // перенес формирование applicationUpdateDate в отдельный метод getApplicationUpdateDate(context);
+11. List<Campaigns> campaignsList = context.getCampaigns();
+    много кода...
+    if (!campaignsList.isEmpty()) {
+        discountsMapper.map(context.getCampaigns());
+    } ->
+
+    if (!context.getCampaigns().isEmpty()) {
+        discountsMapper.map(campaignsList);
+    } // убрал объявление переменной, передаю сразу в целевой метод
+12. List<MplServices> mplServicesList = context.getMplServices();
+    много кода...
+    if (!mplApplicationList.isEmpty()) {
+        discountsMapper.map(mplApplicationList);
+    } ->
+
+    if (!context.getMplApplication().isEmpty()) {
+        discountsMapper.map(context.getMplApplication());
+    } // убрал объявление переменной, передаю сразу в целевой метод
+13. boolean isReserveLimit = "Y".equals(application.getIskReverseSign());
+    много кода...
+    if (isReserveLimit) {...} // перенес переменную в место, непосредственно перед использованием
+14. BiConsumer<DecisionRq> registerResponseInTracing = ... // перенес BiConsumer в отдельный метод registerResponseInTracing(context)
+15. BigInteger appNo = new BigInteger(request.getAppNo());
+    много кода...
+    Application application = applicationService.getApplicationByAppNo(appNo); // перенес переменную в место, непосредственно перед использованием
