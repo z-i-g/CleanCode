@@ -1,0 +1,54 @@
+1.
+@Query("select globalId, currentId  from Application where recordKey = :recordKey")
+List<Object[]> getTraceData(@Param("recordKey") BigInteger recordKey);
+
+@Query("select new TraceDataDto(globalId, currentId)  from Application where recordKey = :recordKey") // использовал DTO класс, без использования List<Object[]>
+List<TraceDataDto> getTraceData(@Param("recordKey") BigInteger recordKey);
+
+2.
+@Query("select serviceParam18, serviceParam19  from Parameters where recordKey = :recordKey")
+List<Object[]> getSystemParams(@Param("recordKey") BigInteger recordKey);
+
+@Query("select new TraceDataDto(globalId, currentId)  from Application where recordKey = :recordKey") // использовал DTO класс, без использования List<Object[]>
+List<SystemParamsDto> getSystemParams(@Param("recordKey") BigInteger recordKey);
+
+3.
+String[] codeArray = reasonCode.split("(\\G.{4}));
+StringBuilder strBuilder = new StringBuilder();
+for (int i = 0; i < codeArray.length; i++) {
+    sb.append(codeArray[i]);
+    if (i < codeArray.length-1)
+        strBuilder.append(", ");
+}
+return strBuilder.toString();
+
+return String.join(",", reasonCode.split("(\\G.{4}))); // переписал метод без использования массива в явном виде
+
+4.
+String[] codes = codeSource.split(";");
+StringBuilder strBuilder = new StringBuilder(codes.length);
+for (int i = 0; i < codes.length; i++) {
+    sb.append(codeArray[i]);
+}
+
+String[] codes = codeSource.split(";");  // переписал метод с использованием последовательного доступа
+StringBuilder strBuilder = new StringBuilder(codes.length);
+for (String code : codes) {
+    sb.append(code);
+}
+
+5.
+for (int i = 0; i < pfrDtaList.size(); i++) {
+    if (pfrDtaList.get(i).getParticipantNum != 1)
+        dataByKey.put(i + 1, pfrDtaList.get(i))
+    else
+        dataByKey.put(0, pfrDtaList.get(i);
+}
+
+int i = 0; // переписал метод с использованием последовательного доступа
+for (PfrData pfr : pfrDtaList) {
+    if (pfrData.getParticipantNum != 1)
+        dataByKey.put(i + 1, pfrData)
+    else
+        dataByKey.put(0, pfrData);
+}
