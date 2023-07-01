@@ -1,0 +1,91 @@
+3.1.
+    1.
+    // key - год после которого необходимо добавить отсутствующие год/года
+    // value - кол-во добавляемых "лет"
+    Map<Integer, Integer> missingYearsMap = new HashMap();
+
+    2.
+    // проверить, есть ли отказное решение по основному заемщику
+    if (isDeclineDecisionOnMainApplicant)
+
+    3.
+    // если блок с акциями пуст, то удаляем ранее сохраненные акции
+    if (isDictionaryEmpty(campaignList))
+
+    4.
+    // проверить, что процентная ставка по основному долгу без дисконта
+    if (isInterestRatePrincipalDebtWithoutDiscount) {
+    ...}
+
+    5.
+    // проверить, что процентная ставка по основному долгу с учетом акций
+    if (isInterestRatePrincipalDebtWithCampaigns) {
+    ...}
+
+    6.
+    // проверить, что заявка уже в процессе автоотказа
+    if (isUpdateExpiredDateFlagByPending)
+
+    7.
+    // статус ожидание оповещения об одобрении и фрод-аналитик принял решение
+    if (isWaitingApprovalStatusAndFillDecision)
+
+3.2.
+    1.
+    public String getConvertedPartnerType(String partnerType) {
+        switch (partnerType) {
+            case "1": return "45"; // Юр лицо
+            case "2": return "46"; // Инвестор
+            ...
+        }
+    }
+
+    public enum PartnerTypes { // переписал метод с комментариями под enum с соответствующим методом
+        LEGAL_PERSON("1", "45"),
+        INVESTOR("2", "46"),
+        ...
+    }
+    private final String partnerType;
+    private final String convertedPartnerType;
+    public static String getConvertedPartnerType(String partnerType) {
+           Stream.of(PartnerTypes.values()).filter(type -> partnerType.equals(type.getPartnerType()))
+            .findFirst().orElseThrow(() -> new IllegalArgumentException("Не существующий partnerType"));
+    }
+
+    2.
+    // одобрение
+    if (context.getStatusCode() == 2) {
+    ...
+    }
+
+    boolean isApproval = context.getStatusCode() == 2; // вывел отдельную переменную с однозначным именем
+    if (isApproval) {
+    ...
+    }
+
+    3.
+    // необходима дополнительная информация
+    if (context.getStatusCode() == 7) {
+        ...
+    }
+
+    boolean isNeedInfo = context.getStatusCode() == 7; // вывел отдельную переменную с однозначным именем
+        if (isNeedInfo) {
+        ...
+    }
+
+    4.
+    // проверка, нужно ли отправлять решение
+    if (Arrays.AsList(-2, -1, 0, 1, 2, 3, 7, 8, 9, 10).contains(context.getStatusCode())) {
+    ...
+    }
+
+    boolean isNeedToSendDecision = Arrays.AsList(-2, -1, 0, 1, 2, 3, 7, 8, 9, 10).contains(context.getStatusCode());  // вывел отдельную переменную с однозначным именем
+    if (isNeedToSendDecision) {
+    ...
+    }
+
+    5.
+    processService.sendDecision(application.getAppno(), 11 /*statusCode*/);
+
+    processService.sendDecision(application.getAppno(), StatusCodes.AutoDecline); // создал enum со статус-кодами приложения
