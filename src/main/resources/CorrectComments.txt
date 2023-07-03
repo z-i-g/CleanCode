@@ -1,0 +1,66 @@
+1.
+// todo переписать select с наличием participantNumber из ответа смежной системы
+п.6
+
+2.
+// под индексом "0" добавляется основной заемщик с данными из таблицы Application
+public List<Guarantors> loadGuarantors(BigInteger recordKey? BigInteger appNo){...}
+п.1
+
+3.
+// не забудь добавить в маппинг поля по основному заемщику
+private MainParticipant getMainParticipant() {...}
+п.5
+
+4.
+// Временное решение до релиза Legacy с измененным типом поля
+public void beforeResult(List<Block> mappingBlocks) {...}
+п.1
+
+5.
+// поле с ключами массива
+FieldDescriptor keylistField = FieldDescriptorFactory.build()...;
+п.1
+
+6.
+// не удалять маппинг этого поля - смежной системе необходимо ее заполнение пустой строкой ("")
+п.5
+
+7.
+// Адрес постоянной регистрации
+...
+// Адрес фактического проживания
+...
+// Адрес временной регистрации
+...
+п.1 для визуального разделения полей POJO
+
+8.
+// тест запускать со включенным системным параметром, иначе результат не верный (по умолчанию выключен)
+public void testMortgageRates() {...}
+п.4
+
+9.
+// Генерация id-ков происходит до отправки на регистрацию запроса, запрос может быть и не зарегистрирован
+IdTuples idTuples = TracingRequestRegister.register(tracingRequest);
+п.3 - используется библиотека смежной команды
+
+10.
+rates.stream()
+    .filter(Objects::nonNull)
+    .map(rate -> rate.setScale(2, RoundingMode.Down)) // отсечение до 2-х знаков после запятой без округлений в любую сторону (согласно требованиям)
+    ...
+п.1
+
+11.
+// дозаполняем "0" спереди до длины 9 (важно для правильного сохранения)
+rate = String.format("$12s", rate).replace(" ", "0");
+п.5
+
+12.
+Arrays.stream(resultIncomeFlags.split(";"))
+    .limit(3) // сохранять только первые 3 кода по каждому участнику
+    .map(BigDecimal::new) // использовать конструктор (может быть экспонента!)
+    ...
+п.1
+п.5
